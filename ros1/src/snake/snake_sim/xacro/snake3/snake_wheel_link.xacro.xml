@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+
+    <xacro:property name="PI" value="3.141592653589793"/>
+
+    <xacro:property name="spring_damper" value="1"/>
+    <xacro:property name="kp" value="1e+6"/>
+    <xacro:property name="kd" value="1.0"/>
+    <xacro:property name="mu1" value="0.2"/>
+    <xacro:property name="mu2" value="0.2"/>
+<!--    <xacro:property name="mu2" value="1"/>-->
+    <xacro:property name="min_depth" value="0.001"/>
+
+    <xacro:property name="scale" value="0.001 0.001 0.001"/>
+    <!--    <xacro:property name="bracket_link" value="$(find snake_sim)/meshes/snake3/snake_bracket_link.stl"/>-->
+    <!--    <xacro:property name="wheel_link" value="$(find snake_sim)/meshes/snake3/snake_wheel_link.stl"/>-->
+    <xacro:property name="bracket_link" value="package://snake_sim/meshes/snake3/snake_bracket_link.stl"/>
+    <xacro:property name="wheel_link" value="package://snake_sim/meshes/snake3/snake_wheel_link.stl"/>
+
+    <xacro:macro name="snake_wheel_link" params="parent
+    joint_bracket_name joint_bracket_xyz joint_bracket_rpy
+    link_bracket_name joint_wheel_name link_wheel_name
+    joint_wheel_axis">
+
+        <joint name="${joint_bracket_name}" type="fixed">
+            <origin xyz="${joint_bracket_xyz}" rpy="${joint_bracket_rpy}"/>
+            <parent link="${parent}"/>
+            <child link="${link_bracket_name}"/>
+        </joint>
+
+        <link name="${link_bracket_name}">
+            <inertial>
+                <origin xyz="1.7979309e-2  0 -9.6702060e-05" rpy="0 0 0"/>
+                <mass value="5.2773963e-2"/>
+                <inertia
+                        ixx="3.3437417e-6"
+                        ixy="-2.4149747e-12"
+                        ixz="0"
+                        iyy="3.8434524e-5"
+                        iyz="0"
+                        izz="4.1565651e-5"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${bracket_link}" scale="${scale}"/>
+                </geometry>
+                <material name="">
+                    <color rgba="1 1 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${bracket_link}" scale="${scale}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${joint_wheel_name}" type="continuous">
+            <origin xyz="0.055 0 0.01" rpy="0 0 0"/>
+            <parent link="${link_bracket_name}"/>
+            <child link="${link_wheel_name}"/>
+            <axis xyz="${joint_wheel_axis}"/>
+            <dynamics damping="0" friction="0"/>
+<!--            <dynamics damping="0" friction="0.1"/>-->
+        </joint>
+
+        <link name="${link_wheel_name}">
+            <inertial>
+                <origin xyz="0  0 -3.0556104e-3" rpy="0 0 0"/>
+                <mass value="3.8463295e-2"/>
+                <inertia
+                        ixx="3.1809569e-6"
+                        ixy="4.2901166e-12"
+                        ixz="0"
+                        iyy="3.1809537e-6"
+                        iyz="0"
+                        izz="5.1549426e-6"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${wheel_link}" scale="${scale}"/>
+                </geometry>
+                <material name="">
+                    <color rgba="1 1 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 -0.0025" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="0.018" length="0.005"/>
+                </geometry>
+            </collision>
+            <!--            <collision>-->
+            <!--                <origin xyz="0 0 0" rpy="0 0 0"/>-->
+            <!--                <geometry>-->
+            <!--                    <mesh filename="${wheel_link}" scale="${scale}"/>-->
+            <!--                </geometry>-->
+            <!--            </collision>-->
+        </link>
+
+        <gazebo reference="${link_bracket_name}">
+            <visual>
+                <material>
+                    <ambient>0 0.8 0 1</ambient>
+                    <diffuse>0 0.8 0 1</diffuse>
+                    <specular>0 0.8 0 1</specular>
+                </material>
+            </visual>
+
+            <collision>
+                <surface>
+                    <contact>
+                        <ode/>
+                    </contact>
+                    <friction>
+                        <ode>
+                            <mu>${mu1}</mu>
+                            <mu2>${mu2}</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <kp>${kp}</kp>
+            <kd>${kd}</kd>
+            <mu1>${mu1}</mu1>
+            <mu2>${mu2}</mu2>
+            <minDepth>${min_depth}</minDepth>
+        </gazebo>
+        <gazebo reference="${link_wheel_name}">
+            <visual>
+                <material>
+                    <ambient>0 0.8 0 1</ambient>
+                    <diffuse>0 0.8 0 1</diffuse>
+                    <specular>0 0.8 0 1</specular>
+                </material>
+            </visual>
+
+            <collision>
+                <surface>
+                    <contact>
+                        <ode/>
+                    </contact>
+                    <friction>
+                        <ode>
+                            <mu>${mu1}</mu>
+                            <mu2>${mu2}</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <kp>${kp}</kp>
+            <kd>${kd}</kd>
+            <mu1>${mu1}</mu1>
+            <mu2>${mu2}</mu2>
+            <minDepth>${min_depth}</minDepth>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

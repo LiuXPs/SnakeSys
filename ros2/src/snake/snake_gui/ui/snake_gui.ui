@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SnakeGUI</class>
+ <widget class="QMainWindow" name="SnakeGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Snake GUI</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(55, 55, 55);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="2,1">
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Data</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QCustomPlot" name="qcp_execute_pos" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(50, 50, 50);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCustomPlot" name="qcp_feedback_pos" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>State</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QVTKOpenGLNativeWidget" name="snake_view">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1920</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_start_stop"/>
+   <addaction name="action_torque_enable"/>
+   <addaction name="separator"/>
+   <addaction name="action_param_control"/>
+   <addaction name="separator"/>
+   <addaction name="action_custom_mode"/>
+   <addaction name="action_typical_mode"/>
+   <addaction name="action_arc_mode"/>
+   <addaction name="action_spiral_mode"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="action_custom_mode">
+   <property name="text">
+    <string>CustomMode</string>
+   </property>
+  </action>
+  <action name="action_typical_mode">
+   <property name="text">
+    <string>TypicalMode</string>
+   </property>
+  </action>
+  <action name="action_arc_mode">
+   <property name="text">
+    <string>ArcMode</string>
+   </property>
+  </action>
+  <action name="action_spiral_mode">
+   <property name="text">
+    <string>SpiralMode</string>
+   </property>
+  </action>
+  <action name="action_param_control">
+   <property name="text">
+    <string>ParamControl</string>
+   </property>
+   <property name="toolTip">
+    <string>ParamControl</string>
+   </property>
+  </action>
+  <action name="action_torque_enable">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>TorqueEnable</string>
+   </property>
+   <property name="toolTip">
+    <string>TorqueEnable</string>
+   </property>
+  </action>
+  <action name="action_start_stop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Start/Stop</string>
+   </property>
+   <property name="toolTip">
+    <string>Start/Stop</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QVTKOpenGLNativeWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">QVTKOpenGLNativeWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header location="global">snake_gui/qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

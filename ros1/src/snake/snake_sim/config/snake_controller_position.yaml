@@ -1,0 +1,95 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 100
+
+position_controllers:
+  type: position_controllers/JointGroupPositionController
+  joints:
+    - snake_joint_1
+    - snake_joint_2
+    - snake_joint_3
+    - snake_joint_4
+    - snake_joint_5
+    - snake_joint_6
+    - snake_joint_7
+    - snake_joint_8
+    - snake_joint_9
+    - snake_joint_10
+    - snake_joint_11
+    - snake_joint_12
+    - snake_joint_13
+    - snake_joint_14
+    - snake_joint_15
+    - snake_joint_16
+    - snake_joint_17
+    - snake_joint_18
+    - snake_joint_19
+    - snake_joint_20
+    - snake_joint_21
+    - snake_joint_22
+    - snake_joint_23
+    - snake_joint_24
+    - snake_joint_25
+    - snake_joint_26
+    - snake_joint_27
+    - snake_joint_28
+
+gazebo_ros_control:
+  pid_gains:
+    snake_joint_1: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_2: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_3: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_4: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_5: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_6: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_7: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_8: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_9: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_10: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_11: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_12: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_13: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_14: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_15: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_16: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_17: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_18: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_19: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_20: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_21: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_22: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_23: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_24: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_25: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_26: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_27: { p: 50.001, i: 1.002, d: 0.103 }
+    snake_joint_28: { p: 50.001, i: 1.002, d: 0.103 }
+
+#      snake_joint_1: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_2: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_3: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_4: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_5: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_6: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_7: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_8: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_9: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_10: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_11: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_12: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_13: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_14: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_15: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_16: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_17: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_18: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_19: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_20: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_21: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_22: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_23: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_24: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_25: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_26: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_27: { p: 10.001, i: 1.002, d: 0.103 }
+#      snake_joint_28: { p: 10.001, i: 1.002, d: 0.103 }

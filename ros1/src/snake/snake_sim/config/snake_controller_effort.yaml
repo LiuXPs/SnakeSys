@@ -1,0 +1,92 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 100
+
+position_controllers:
+  type: effort_controllers/JointGroupPositionController
+  joints:
+    - snake_joint_1
+    - snake_joint_2
+    - snake_joint_3
+    - snake_joint_4
+    - snake_joint_5
+    - snake_joint_6
+    - snake_joint_7
+    - snake_joint_8
+    - snake_joint_9
+    - snake_joint_10
+    - snake_joint_11
+    - snake_joint_12
+    - snake_joint_13
+    - snake_joint_14
+    - snake_joint_15
+    - snake_joint_16
+    - snake_joint_17
+    - snake_joint_18
+    - snake_joint_19
+    - snake_joint_20
+    - snake_joint_21
+    - snake_joint_22
+    - snake_joint_23
+    - snake_joint_24
+    - snake_joint_25
+    - snake_joint_26
+    - snake_joint_27
+    - snake_joint_28
+
+  snake_joint_1:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_2:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_3:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_4:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_5:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_6:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_7:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_8:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_9:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_10:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_11:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_12:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_13:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_14:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_15:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_16:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_17:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_18:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_19:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_20:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_21:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_22:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_23:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_24:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_25:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_26:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_27:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }
+  snake_joint_28:
+    pid: { p: 100.01, i: 1.01, d: 0.201 }

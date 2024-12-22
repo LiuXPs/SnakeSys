@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node
+            pkg="snake_sim"
+            type="snake_sim_pid"
+            name="snake_sim_pid"
+            respawn="false"
+            output="screen"/>
+</launch>

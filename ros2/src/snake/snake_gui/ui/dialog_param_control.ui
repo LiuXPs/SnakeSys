@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogParamControl</class>
+ <widget class="QDialog" name="DialogParamControl">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>564</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Parameter Control  </string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(55, 55, 55);</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="2" column="4">
+       <widget class="QSpinBox" name="spinBox_weight_mode">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="label_alpha_yaw_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="4">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_kg_pitch">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="5">
+       <widget class="QLabel" name="label_gauss_sigma_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_alpha_yaw">
+        <property name="text">
+         <string>Alpha Yaw</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_lambda_yaw">
+        <property name="text">
+         <string>Lambda Yaw</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="label_weight_mode">
+        <property name="text">
+         <string>Weight Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="label_omega_yaw">
+        <property name="text">
+         <string>Omega Yaw</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_alpha_yaw">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="5">
+       <widget class="QLabel" name="label_omega_pitch_unit">
+        <property name="text">
+         <string>pi*rad/s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_servo_idn_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="5">
+       <widget class="QLabel" name="label_lambda_pitch_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_sigma_yaw">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>4.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3">
+       <widget class="QLabel" name="label_alpha_pitch">
+        <property name="text">
+         <string>Alpha Pitch</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="4">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_lambda_pitch">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="4">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_gauss_sigma">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="5">
+       <widget class="QLabel" name="label_alpha_pitch_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="5">
+       <widget class="QLabel" name="label_kg_pitch_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="4">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_alpha_pitch">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="3">
+       <widget class="QLabel" name="label_kg_pitch">
+        <property name="text">
+         <string>Kg Pitch</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_kg_yaw">
+        <property name="text">
+         <string>Kg Yaw</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_lambda_yaw">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="maximum">
+         <double>100.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_gauss_mu">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>-15.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>15.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_kg_yaw">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="label_gauss_mu_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="QLabel" name="label_weight_mode_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="3">
+       <widget class="QLabel" name="label_omega_pitch">
+        <property name="text">
+         <string>Omega Pitch</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_topo_mode">
+        <property name="text">
+         <string>Topo Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="4">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_sigma_pitch">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>4.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="2">
+       <widget class="QLabel" name="label_sigma_yaw_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_omega_yaw">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>-3.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>3.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_link_length">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>0.001000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>0.500000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="2">
+       <widget class="QLabel" name="label_omega_yaw_unit">
+        <property name="text">
+         <string>pi*rad/s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="label_rate_unit">
+        <property name="text">
+         <string>Hz</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_link_length_unit">
+        <property name="text">
+         <string>m</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="label_topo_mode_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="3">
+       <widget class="QLabel" name="label_sigma_pitch">
+        <property name="text">
+         <string>Sigma Pitch</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_link_length">
+        <property name="text">
+         <string>Link Length</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBox_topo_mode">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>7</number>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_gauss_mu">
+        <property name="text">
+         <string>Gauss Mu</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="4">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_omega_pitch">
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>-3.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>3.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_servo_idn">
+        <property name="text">
+         <string>Servo IDN</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="spinBox_servo_idn">
+        <property name="minimum">
+         <number>2</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="singleStep">
+         <number>2</number>
+        </property>
+        <property name="value">
+         <number>28</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QSpinBox" name="spinBox_rate">
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="singleStep">
+         <number>5</number>
+        </property>
+        <property name="value">
+         <number>30</number>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QLabel" name="label_lambda_pitch">
+        <property name="text">
+         <string>Lambda Pitch</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLabel" name="label_kg_yaw_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="label_sigma_yaw">
+        <property name="text">
+         <string>Sigma Yaw</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_rate">
+        <property name="text">
+         <string>Rate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="label_lambda_yaw_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="5">
+       <widget class="QLabel" name="label_sigma_pitch_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QLabel" name="label_gauss_sigma">
+        <property name="text">
+         <string>Gauss Sigma</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_couple_mode">
+        <property name="text">
+         <string>Couple Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="spinBox_couple_mode">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_couple_mode_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="label_cpg_mode">
+        <property name="text">
+         <string>CPG Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5">
+       <widget class="QLabel" name="label_cpg_mode_unit">
+        <property name="text">
+         <string>one unit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QSpinBox" name="spinBox_cpg_mode">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DialogParamControl</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DialogParamControl</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

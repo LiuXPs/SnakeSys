@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+    <xacro:property name="PI" value="3.141592653589793"/>
+
+    <xacro:include filename="$(find snake_sim)/xacro/snake2/snake_base_link.xacro.xml"/>
+    <xacro:include filename="$(find snake_sim)/xacro/snake2/snake_joint_link.xacro.xml"/>
+    <xacro:include filename="$(find snake_sim)/xacro/snake2/snake_wheel_link.xacro.xml"/>
+
+    <xacro:macro name="snake_orth_joint" params="index wheel gazebo">
+        <xacro:if value="${index==0}">
+            <xacro:snake_base_link link_name="snake_base"/>
+
+            <xacro:if value="${wheel}">
+                <xacro:snake_wheel_link parent="snake_base"
+                                        joint_bracket_name="snake_joint_bracket_${index+1}"
+                                        joint_bracket_xyz="0 -0.069 0"
+                                        joint_bracket_rpy="0 0 ${PI/2}"
+                                        link_bracket_name="snake_link_bracket_${index+1}"
+                                        joint_wheel_name="snake_joint_wheel_${index+1}"
+                                        link_wheel_name="snake_link_wheel_${index+1}"
+                                        joint_wheel_axis="0 0 1"/>
+            </xacro:if>
+        </xacro:if>
+        <xacro:unless value="${index==0}">
+            <xacro:if value="${index==1}">
+                <xacro:snake_joint_link parent="snake_base"
+                                        joint_name="snake_joint_${2*index-1}"
+                                        joint_xyz="0 0 0"
+                                        joint_rpy="0 0 ${PI/2}"
+                                        joint_axis="0 0 -1"
+                                        link_name="snake_link_${2*index-1}"
+                                        trans_name="snake_trans_${2*index-1}"
+                                        actuator_name="snake_actuator_${2*index-1}"
+                                        gazebo="${gazebo}"/>
+            </xacro:if>
+            <xacro:unless value="${index==1}">
+                <xacro:snake_joint_link parent="snake_link_${2*(index-1)}"
+                                        joint_name="snake_joint_${2*index-1}"
+                                        joint_xyz="0.106 0 0"
+                                        joint_rpy="${PI/2} 0 0"
+                                        joint_axis="0 0 -1"
+                                        link_name="snake_link_${2*index-1}"
+                                        trans_name="snake_trans_${2*index-1}"
+                                        actuator_name="snake_actuator_${2*index-1}"
+                                        gazebo="${gazebo}"/>
+            </xacro:unless>
+
+            <xacro:snake_joint_link parent="snake_link_${2*index-1}"
+                                    joint_name="snake_joint_${2*index}"
+                                    joint_xyz="0.106 0 0"
+                                    joint_rpy="-${PI/2} 0 0"
+                                    joint_axis="0 0 -1"
+                                    link_name="snake_link_${2*index}"
+                                    trans_name="snake_trans_${2*index}"
+                                    actuator_name="snake_actuator_${2*index}"
+                                    gazebo="${gazebo}"/>
+
+            <xacro:if value="${wheel}">
+                <xacro:snake_wheel_link parent="snake_link_${2*index}"
+                                        joint_bracket_name="snake_joint_bracket_${index+1}"
+                                        joint_bracket_xyz="0.0369993 0 0"
+                                        joint_bracket_rpy="${PI/2} 0 0"
+                                        link_bracket_name="snake_link_bracket_${index+1}"
+                                        joint_wheel_name="snake_joint_wheel_${index+1}"
+                                        link_wheel_name="snake_link_wheel_${index+1}"
+                                        joint_wheel_axis="0 0 1"/>
+            </xacro:if>
+        </xacro:unless>
+
+    </xacro:macro>
+</robot>

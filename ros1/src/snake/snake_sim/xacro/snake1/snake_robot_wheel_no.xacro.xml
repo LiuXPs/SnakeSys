@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+
+    <xacro:property name="wheel" value="false"/>
+    <xacro:property name="gazebo" value="0"/>
+    <!--    <xacro:property name="gazebo" value="1"/>-->
+    <!--    <xacro:property name="gazebo" value="2"/>-->
+
+    <xacro:include filename="$(find snake_sim)/xacro/snake1/snake_robot_model.xacro.xml"/>
+    <xacro:snake_robot_model wheel="${wheel}" gazebo="${gazebo}"/>
+</robot>

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon_custom/power_on.ico</file>
+        <file>icon_custom/restart.ico</file>
+        <file>icon_custom/shut_down.ico</file>
+        <file>icon_custom/sleep.ico</file>
+    </qresource>
+</RCC>

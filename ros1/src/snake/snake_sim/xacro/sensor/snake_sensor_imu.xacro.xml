@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+    <xacro:property name="PI" value="3.141592653589793"/>
+
+    <xacro:macro name="snake_sensor_imu">
+        <gazebo reference="snake_base">
+            <gravity>true</gravity>
+            <sensor name="sensor_imu" type="imu">
+                <always_on>true</always_on>
+                <visualize>true</visualize>
+                <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                    <initialOrientationAsReference>false</initialOrientationAsReference>
+                    <robotNamespace>snake</robotNamespace>
+                    <topicName>sensor/imu/imu_gazebo/imu</topicName>
+                    <frameName>imu_frame</frameName>
+                    <updateRateHZ>200.0</updateRateHZ>
+                    <gaussianNoise>0.01</gaussianNoise>
+                    <xyzOffset>0 0 0</xyzOffset>
+                    <rpyOffset>0 0 0</rpyOffset>
+                </plugin>
+                <pose>0 0 0 0 0 0</pose>
+            </sensor>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

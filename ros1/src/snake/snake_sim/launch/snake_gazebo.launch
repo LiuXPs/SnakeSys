@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<launch>
+
+    <include file="$(find snake_sim)/launch/snake_sim_pid.launch">
+    </include>
+
+    <arg name="snake_ns" default="snake_sim"/>
+
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="paused" default="true"/>
+    <arg name="use_sim_time" default="false"/>
+    <arg name="headless" default="false"/>
+    <arg name="physics" default="ode"/>
+    <arg name="verbose" default="false"/>
+    <arg name="output" default="screen"/>
+    <arg name="recording" default="false"/>
+
+    <include file="$(find snake_sim)/launch/empty_world.launch">
+<!--         <arg name="world_name" value="$(find snake_sim)/worlds_gazebo/snake_world_01.world.xml"/> -->
+<!--         <arg name="world_name" value="$(find snake_sim)/worlds_gazebo/snake_world_02.world.xml"/> -->
+        <arg name="world_name" value="$(find snake_sim)/worlds_gazebo/snake_world_03.world.xml"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+        <arg name="physics" value="$(arg physics)"/>
+        <arg name="verbose" value="$(arg verbose)"/>
+        <arg name="output" value="$(arg output)"/>
+        <arg name="recording" value="$(arg recording)"/>
+    </include>
+
+<!--     <arg name="model" default="$(find snake_sim)/xacro/snake1/snake_robot_wheel_no.xacro.xml"/> -->
+<!--     <arg name="model" default="$(find snake_sim)/xacro/snake1/snake_robot_wheel.xacro.xml"/> -->
+<!--     <arg name="model" default="$(find snake_sim)/xacro/snake2/snake_robot_wheel_no.xacro.xml"/> -->
+<!--     <arg name="model" default="$(find snake_sim)/xacro/snake2/snake_robot_wheel.xacro.xml"/> -->
+<!--     <arg name="model" default="$(find snake_sim)/xacro/snake3/snake_robot_wheel_no.xacro.xml"/> -->
+    <arg name="model" default="$(find snake_sim)/xacro/snake3/snake_robot_wheel.xacro.xml"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+    <rosparam file="$(find snake_sim)/config/snake_controller_position.yaml" command="load"/>
+
+    <!--    <node-->
+    <!--            pkg="joint_state_publisher"-->
+    <!--            type="joint_state_publisher"-->
+    <!--            name="joint_state_publisher"-->
+    <!--            respawn="false"-->
+    <!--            output="screen">-->
+    <!--    </node>-->
+
+    <!--        <node-->
+    <!--                pkg="joint_state_publisher_gui"-->
+    <!--                type="joint_state_publisher_gui"-->
+    <!--                name="joint_state_publisher_gui"-->
+    <!--                respawn="false"-->
+    <!--                output="screen">-->
+    <!--        </node>-->
+
+    <node
+            pkg="robot_state_publisher"
+            type="robot_state_publisher"
+            name="robot_state_publisher"
+            respawn="false"
+            output="screen">
+    </node>
+
+    <node
+            pkg="controller_manager"
+            type="spawner"
+            name="controller_spawner"
+            respawn="false"
+            output="screen"
+            args="joint_state_controller position_controllers">
+    </node>
+
+    <node
+            pkg="gazebo_ros"
+            type="spawn_model"
+            name="spawn_model"
+            args="
+            -urdf
+            -param robot_description
+            -model snake_robot
+            -x 0
+            -y 1
+            -z 0.1"
+            respawn="false"
+            output="screen">
+    </node>
+
+    <!--    <node-->
+    <!--            pkg="rviz"-->
+    <!--            type="rviz"-->
+    <!--            name="rviz"-->
+    <!--            args="-d $(find snake_sim)/rviz/snake_robot.rviz"-->
+    <!--            output="screen">-->
+    <!--    </node>-->
+
+    <!--    <node-->
+    <!--            pkg="tf"-->
+    <!--            type="static_transform_publisher"-->
+    <!--            name="snake_tf"-->
+    <!--            args="0 0 0 0 0 0 world snake_base 10">-->
+    <!--    </node>-->
+    <!--    <node-->
+    <!--            pkg="tf"-->
+    <!--            type="static_transform_publisher"-->
+    <!--            name="snake_tf"-->
+    <!--            args="0 0 0 0 0 0 snake_link_1 snake_link_2 10">-->
+    <!--    </node>-->
+
+</launch>

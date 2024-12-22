@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+
+    <xacro:include filename="$(find snake_sim)/xacro/snake1/snake_orth_joint.xacro.xml"/>
+    <xacro:include filename="$(find snake_sim)/xacro/sensor/snake_sensor_imu.xacro.xml"/>
+    <xacro:include filename="$(find snake_sim)/xacro/sensor/snake_sensor_camera.xacro.xml"/>
+
+    <xacro:macro name="snake_robot_model" params="wheel gazebo">
+
+        <xacro:snake_orth_joint index="0" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="1" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="2" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="3" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="4" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="5" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="6" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="7" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="8" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="9" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="10" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="11" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="12" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="13" wheel="${wheel}" gazebo="${gazebo}"/>
+        <xacro:snake_orth_joint index="14" wheel="${wheel}" gazebo="${gazebo}"/>
+
+        <xacro:snake_sensor_imu/>
+        <xacro:snake_sensor_cam_mono/>
+
+        <xacro:if value="${gazebo==0}">
+            <gazebo>
+                <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+                    <robotNamespace>/</robotNamespace>
+                    <controlPeriod>0.001</controlPeriod>
+                    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+                    <legacyModeNS>true</legacyModeNS>
+                </plugin>
+            </gazebo>
+        </xacro:if>
+        <xacro:if value="${gazebo==1}">
+            <gazebo>
+                <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+                    <parameters>$(find snake_sim)/config/snake_controller_position.yaml</parameters>
+                </plugin>
+            </gazebo>
+        </xacro:if>
+        <xacro:if value="${gazebo==2}">
+            <gazebo>
+                <plugin filename="libign_ros2_control-system.so" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+                    <parameters>$(find snake_sim)/config/snake_controller_position.yaml</parameters>
+                </plugin>
+            </gazebo>
+        </xacro:if>
+
+    </xacro:macro>
+</robot>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+
+    <xacro:property name="PI" value="3.141592653589793"/>
+
+    <xacro:property name="spring_damper" value="1"/>
+    <xacro:property name="kp" value="1e+6"/>
+    <xacro:property name="kd" value="1.0"/>
+    <xacro:property name="mu1" value="0.2"/>
+    <xacro:property name="mu2" value="0.2"/>
+    <xacro:property name="min_depth" value="0.001"/>
+
+    <xacro:property name="scale" value="0.001 0.001 0.001"/>
+    <!--    <xacro:property name="bracket_link" value="$(find snake_sim)/meshes/snake1/snake_bracket_link.stl"/>-->
+    <!--    <xacro:property name="wheel_link" value="$(find snake_sim)/meshes/snake1/snake_wheel_link.stl"/>-->
+    <xacro:property name="bracket_link" value="package://snake_sim/meshes/snake1/snake_bracket_link.stl"/>
+    <xacro:property name="wheel_link" value="package://snake_sim/meshes/snake1/snake_wheel_link.stl"/>
+
+    <xacro:macro name="snake_wheel_link" params="parent
+    joint_bracket_name joint_bracket_xyz joint_bracket_rpy
+    link_bracket_name
+    joint_wheel_left_name link_wheel_left_name
+    joint_wheel_right_name link_wheel_right_name
+    joint_wheel_left_axis joint_wheel_right_axis">
+
+        <joint name="${joint_bracket_name}" type="fixed">
+            <origin xyz="${joint_bracket_xyz}" rpy="${joint_bracket_rpy}"/>
+            <parent link="${parent}"/>
+            <child link="${link_bracket_name}"/>
+        </joint>
+
+        <link name="${link_bracket_name}">
+            <inertial>
+                <origin xyz="2.6736629e-6  0 -5.6481538e-3" rpy="0 0 0"/>
+                <mass value="3.8882049e-02"/>
+                <inertia
+                        ixx="1.2479493e-5"
+                        ixy="0"
+                        ixz="1.3806731e-09"
+                        iyy="3.6716954e-6"
+                        iyz="0"
+                        izz="1.0888012e-5"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${bracket_link}" scale="${scale}"/>
+                </geometry>
+                <material name="">
+                    <color rgba="1 1 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${bracket_link}" scale="${scale}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${joint_wheel_left_name}" type="continuous">
+            <origin xyz="0 -0.0345 -0.014" rpy="${PI/2} 0 0"/>
+            <parent link="${link_bracket_name}"/>
+            <child link="${link_wheel_left_name}"/>
+            <axis xyz="${joint_wheel_left_axis}"/>
+        </joint>
+
+        <link name="${link_wheel_left_name}">
+            <inertial>
+                <origin xyz="0  0 -6.2886701e-3" rpy="0 0 0"/>
+                <mass value="5.6194172e-03"/>
+                <inertia
+                        ixx="5.4377376e-7"
+                        ixy="0"
+                        ixz="0"
+                        iyy="5.4377402e-7"
+                        iyz="0"
+                        izz="4.6261661e-7"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${wheel_link}" scale="${scale}"/>
+                </geometry>
+                <material name="">
+                    <color rgba="1 1 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="0.015" length="0.01"/>
+                </geometry>
+            </collision>
+            <!--            <collision>-->
+            <!--                <origin xyz="0 0 0" rpy="0 0 0"/>-->
+            <!--                <geometry>-->
+            <!--                    <mesh filename="${wheel_link}" scale="${scale}"/>-->
+            <!--                </geometry>-->
+            <!--            </collision>-->
+        </link>
+
+        <joint name="${joint_wheel_right_name}" type="continuous">
+            <origin xyz="0 0.0345 -0.014" rpy="-${PI/2} ${PI} 0"/>
+            <parent link="${link_bracket_name}"/>
+            <child link="${link_wheel_right_name}"/>
+            <axis xyz="${joint_wheel_right_axis}"/>
+        </joint>
+
+        <link name="${link_wheel_right_name}">
+            <inertial>
+                <origin xyz="0  0 -6.2886701e-3" rpy="0 0 0"/>
+                <mass value="5.6194172e-03"/>
+                <inertia
+                        ixx="5.4377376e-7"
+                        ixy="0"
+                        ixz="0"
+                        iyy="5.4377402e-7"
+                        iyz="0"
+                        izz="4.6261661e-7"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${wheel_link}" scale="${scale}"/>
+                </geometry>
+                <material name="">
+                    <color rgba="1 1 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="0.015" length="0.01"/>
+                </geometry>
+            </collision>
+            <!--            <collision>-->
+            <!--                <origin xyz="0 0 0" rpy="0 0 0"/>-->
+            <!--                <geometry>-->
+            <!--                    <mesh filename="${wheel_link}" scale="${scale}"/>-->
+            <!--                </geometry>-->
+            <!--            </collision>-->
+        </link>
+
+        <gazebo reference="${link_bracket_name}">
+            <visual>
+                <material>
+                    <ambient>0 0.8 0 1</ambient>
+                    <diffuse>0 0.8 0 1</diffuse>
+                    <specular>0 0.8 0 1</specular>
+                </material>
+            </visual>
+
+            <collision>
+                <surface>
+                    <contact>
+                        <ode/>
+                    </contact>
+                    <friction>
+                        <ode>
+                            <mu>${mu1}</mu>
+                            <mu2>${mu2}</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <kp>${kp}</kp>
+            <kd>${kd}</kd>
+            <mu1>${mu1}</mu1>
+            <mu2>${mu2}</mu2>
+            <minDepth>${min_depth}</minDepth>
+        </gazebo>
+        <gazebo reference="${link_wheel_left_name}">
+            <visual>
+                <material>
+                    <ambient>0 0.8 0 1</ambient>
+                    <diffuse>0 0.8 0 1</diffuse>
+                    <specular>0 0.8 0 1</specular>
+                </material>
+            </visual>
+
+            <collision>
+                <surface>
+                    <contact>
+                        <ode/>
+                    </contact>
+                    <friction>
+                        <ode>
+                            <mu>${mu1}</mu>
+                            <mu2>${mu2}</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <kp>${kp}</kp>
+            <kd>${kd}</kd>
+            <mu1>${mu1}</mu1>
+            <mu2>${mu2}</mu2>
+            <minDepth>${min_depth}</minDepth>
+        </gazebo>
+        <gazebo reference="${link_wheel_right_name}">
+            <visual>
+                <material>
+                    <ambient>0 0.8 0 1</ambient>
+                    <diffuse>0 0.8 0 1</diffuse>
+                    <specular>0 0.8 0 1</specular>
+                </material>
+            </visual>
+
+            <collision>
+                <surface>
+                    <contact>
+                        <ode/>
+                    </contact>
+                    <friction>
+                        <ode>
+                            <mu>${mu1}</mu>
+                            <mu2>${mu2}</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <kp>${kp}</kp>
+            <kd>${kd}</kd>
+            <mu1>${mu1}</mu1>
+            <mu2>${mu2}</mu2>
+            <minDepth>${min_depth}</minDepth>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

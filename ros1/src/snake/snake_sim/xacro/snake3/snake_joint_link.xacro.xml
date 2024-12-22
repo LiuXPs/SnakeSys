@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="snake_robot">
+
+    <xacro:property name="PI" value="3.141592653589793"/>
+
+    <xacro:property name="spring_damper" value="1"/>
+    <xacro:property name="kp" value="1e+6"/>
+    <xacro:property name="kd" value="1.0"/>
+    <xacro:property name="mu1" value="0.2"/>
+    <xacro:property name="mu2" value="0.2"/>
+    <xacro:property name="min_depth" value="0.001"/>
+
+    <xacro:property name="scale" value="0.001 0.001 0.001"/>
+    <!--    <xacro:property name="joint_link" value="$(find snake_sim)/meshes/snake3/snake_joint_link.stl"/>-->
+    <xacro:property name="joint_link" value="package://snake_sim/meshes/snake3/snake_joint_link.stl"/>
+
+    <xacro:macro name="snake_joint_link" params="parent
+    joint_name joint_xyz joint_rpy joint_axis link_name
+    trans_name actuator_name gazebo">
+        <joint name="${joint_name}" type="revolute">
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}"/>
+            <parent link="${parent}"/>
+            <child link="${link_name}"/>
+            <axis xyz="${joint_axis}"/>
+            <limit
+                    lower="-1.57"
+                    upper="1.57"
+                    effort="1000"
+                    velocity="1000"/>
+            <dynamics damping="0.1" friction="0.1"/>
+        </joint>
+        <link name="${link_name}">
+            <inertial>
+                <origin xyz="7.3385080e-2  7.8625619e-06  2.8511717e-04" rpy="0 0 0"/>
+                <mass value="1.3310425e+0"/>
+                <inertia
+                        ixx="2.0720843e-3"
+                        ixy="-5.3098473e-7"
+                        ixz="-4.5654647e-6"
+                        iyy="1.0602626e-2"
+                        iyz="4.4678376e-7"
+                        izz="1.0637377e-2"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${joint_link}" scale="${scale}"/>
+                </geometry>
+                <material name="">
+                    <color rgba="1 1 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0.08 0 0" rpy="0 ${PI/2} 0"/>
+                <geometry>
+                    <cylinder radius="0.055" length="0.16"/>
+                </geometry>
+            </collision>
+            <!--            <collision>-->
+            <!--                <origin xyz="0.08 0 0" rpy="0 0 0"/>-->
+            <!--                <geometry>-->
+            <!--                    <box size="0.16 0.11 0.11"/>-->
+            <!--                </geometry>-->
+            <!--            </collision>-->
+            <!--            <collision>-->
+            <!--                <origin xyz="0 0 0" rpy="0 0 0"/>-->
+            <!--                <geometry>-->
+            <!--                    <mesh filename="${joint_link}" scale="${scale}"/>-->
+            <!--                </geometry>-->
+            <!--            </collision>-->
+        </link>
+
+        <gazebo reference="${link_name}">
+            <visual>
+                <material>
+                    <ambient>0 0 0.8 1</ambient>
+                    <diffuse>0 0 0.8 1</diffuse>
+                    <specular>0 0 0.8 1</specular>
+                </material>
+            </visual>
+
+            <collision>
+                <surface>
+                    <contact>
+                        <ode/>
+                    </contact>
+                    <friction>
+                        <ode>
+                            <mu>${mu1}</mu>
+                            <mu2>${mu2}</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <kp>${kp}</kp>
+            <kd>${kd}</kd>
+            <mu1>${mu1}</mu1>
+            <mu2>${mu2}</mu2>
+            <minDepth>${min_depth}</minDepth>
+        </gazebo>
+
+        <xacro:if value="${gazebo==0}">
+            <transmission name="${trans_name}">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="${joint_name}">
+                    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="${actuator_name}">
+                    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                    <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+            </transmission>
+        </xacro:if>
+
+        <xacro:if value="${gazebo==1}">
+            <ros2_control name="GazeboSystem" type="system">
+                <hardware>
+                    <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+                </hardware>
+                <joint name="${joint_name}">
+                    <command_interface name="position">
+                        <param name="min">-1.57</param>
+                        <param name="max">1.57</param>
+                    </command_interface>
+                    <state_interface name="position"/>
+                    <state_interface name="velocity"/>
+                    <state_interface name="effort"/>
+                </joint>
+            </ros2_control>
+        </xacro:if>
+
+        <xacro:if value="${gazebo==2}">
+            <ros2_control name="IgnitionSystem" type="system">
+                <hardware>
+                    <plugin>ign_ros2_control/IgnitionSystem</plugin>
+                </hardware>
+                <joint name="${joint_name}">
+                    <command_interface name="position">
+                        <param name="min">-1.57</param>
+                        <param name="max">1.57</param>
+                    </command_interface>
+                    <state_interface name="position"/>
+                    <state_interface name="velocity"/>
+                    <state_interface name="effort"/>
+                </joint>
+            </ros2_control>
+        </xacro:if>
+
+    </xacro:macro>
+</robot>
